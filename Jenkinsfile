@@ -47,6 +47,7 @@ pipeline {
             lock(resource: "", label: 'eon', inversePrecedence: true, variable: 'eon_ip', quantity: 1){
               timeout(time: 60, unit: 'MINUTES') {
                 dir(path: 'selfdrive/test') {
+                  sh 'printenv'
                   sh 'pip install paramiko'
                   sh 'python phone_ci.py "cd release && ./build_devel.sh"'
                 }

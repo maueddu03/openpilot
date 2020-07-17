@@ -47,7 +47,7 @@ pipeline {
             lock(resource: "", label: 'eon', inversePrecedence: true, variable: 'eon_ip', quantity: 1){
               timeout(time: 60, unit: 'MINUTES') {
                 dir(path: 'selfdrive/test') {
-                  sh 'HEAD_REMOTE=$(git ls-remote ${env.GIT_URL} ${env.GIT_BRANCH} | awk '{print $1}')'
+                  sh 'HEAD_REMOTE=$(git ls-remote ${env.GIT_URL} ${env.GIT_BRANCH} | awk "{print $1}")'
                   sh 'printenv'
                   sh 'pip install paramiko'
                   sh 'python phone_ci.py "cd release && ./build_devel.sh"'
